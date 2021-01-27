@@ -4,7 +4,7 @@ import React from "react";
 
 function Meteo() {
   const [meteoData, setMeteoData] = React.useState({});
-
+ 
   React.useEffect(() => {
     const fetchMeteo = async () => {
       const requestData = await fetch(
@@ -16,7 +16,7 @@ function Meteo() {
       setMeteoData(requestData);
     };
     fetchMeteo();
-  }, [buttonState]);
+  }, []);
 
   return (
     <form>
