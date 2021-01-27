@@ -4,7 +4,7 @@ import React from "react";
 
 function Meteo() {
   const [meteoData, setMeteoData] = React.useState({});
- 
+
   React.useEffect(() => {
     const fetchMeteo = async () => {
       const requestData = await fetch(
@@ -17,12 +17,24 @@ function Meteo() {
     };
     fetchMeteo();
   }, []);
-console.log(meteoData)
+
+  function cityName(e) {
+    console.log(e.target.value);
+  }
+
+  // console.log('***',meteoData.main.temp);
+
   return (
     <form>
-      <label>Insert your city</label>
-      <div>{JSON.stringify(meteoData)}</div>
-      <button>Show</button>
+      <label>Insert your city </label>
+      <input onChange={cityName}></input>
+     <div><button>Show</button></div> 
+      {
+        <div>
+          Temp: {JSON.stringify(meteoData)} ℃
+        </div> 
+      }
+    
     </form>
   );
 }
