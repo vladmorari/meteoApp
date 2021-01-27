@@ -38,7 +38,13 @@ function Meteo() {
       {Object.keys(meteoData).length === 0 ? (
         <h1>Loading...</h1>
       ) : (
-        <div> Temp: {JSON.stringify(meteoData.main.temp)} ℃</div>
+        <div>
+          <div>
+            Country: {JSON.stringify(meteoData.sys.country)} ,
+            {JSON.stringify(meteoData.name)}
+          </div>
+          <div> Temperature: {JSON.stringify(meteoData.main.temp)} ℃</div>
+        </div>
       )}
     </div>
   );
