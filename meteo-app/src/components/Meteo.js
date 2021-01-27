@@ -13,11 +13,11 @@ function Meteo() {
       const responseData = await requestData.json();
 
       console.log("->", responseData);
-      setMeteoData(requestData);
+      setMeteoData(responseData);
     };
     fetchMeteo();
   }, []);
-
+console.log(meteoData)
   return (
     <form>
       <label>Insert your city</label>
