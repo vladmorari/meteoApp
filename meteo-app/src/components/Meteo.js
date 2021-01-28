@@ -35,20 +35,19 @@ function Meteo() {
           Show
         </button>
       </div>
-      {
-
-      Object.keys(meteoData).length === 0 ? (<h1>Loading...</h1>)  
-      
-        :  meteoData.cod ==='404' ? (<h1>Error...</h1>) :
-        (
-          <div>
+      {Object.keys(meteoData).length === 0 ? (
+        <h1>Loading...</h1>
+      ) : meteoData.cod === "404" || meteoData.cod === "400" ? (
+        <h1>{meteoData.message}...</h1>
+      ) : (
+        <div>
           <div>
             Country: {JSON.stringify(meteoData.sys.country)} ,
             {JSON.stringify(meteoData.name)}
           </div>
           <div> Temperature: {JSON.stringify(meteoData.main.temp)} ℃</div>
-        </div>)
-      }
+        </div>
+      )}
     </div>
   );
 }
