@@ -7,20 +7,21 @@ function Meteo() {
 
   const dataReducer = (state, action) => {
     switch (action.type) {
-      case "CHANGE_INPUT":
+      case "CHANGE_INPUT": //console.log("change  ",action.payload.input)
         return {
           ...state,
-          input: action.payload.text,
+          input: action.payload.input,
         };
       case "FETCH_DATA":
+        // console.log("fetch ", action.payload.meteo.main);
         return {
           ...state,
-          meteo: action.payload.text,
+          meteo: action.payload.meteo,
         };
-      case "METEO_DATA":
+      case "METEO_DATA": //console.log("orasu",action.payload.city)
         return {
           ...state,
-          city: action.payload.text,
+          city: action.payload.city,
         };
       default:
         return state;
@@ -28,9 +29,8 @@ function Meteo() {
   };
   const initialState = {
     meteo: {},
-    city:"chisinau",
-    input:""
-
+    city: "madagascar",
+    input: "",
   };
   const [state, dispatch] = useReducer(dataReducer, initialState);
 
@@ -47,6 +47,7 @@ function Meteo() {
         `http://api.openweathermap.org/data/2.5/weather?q=${state.city}&appid=60863f88c34e274c330b04f9cdd90e7d&units=metric`
       );
       const responseData = await requestData.json();
+
       dispatch({
         type: "FETCH_DATA",
         payload: { meteo: responseData },
@@ -65,7 +66,7 @@ function Meteo() {
           onClick={(e) => {
             dispatch({
               type: "METEO_DATA",
-              payload: { city: "chisinau" },
+              payload: { city: state.input },
             });
             // setQuery(inputData);
           }}
@@ -76,7 +77,7 @@ function Meteo() {
       {Object.keys(state.meteo).length === 0 ? (
         <h1>Loading...</h1>
       ) : state.meteo.cod === "404" || state.meteo.cod === "400" ? (
-        <h1>{state.meteo.message}...</h1>
+        <h3>{state.meteo.message}...</h3>
       ) : (
         <div>
           <div>
