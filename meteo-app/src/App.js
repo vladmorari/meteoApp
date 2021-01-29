@@ -1,10 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import Meteo from "./components/Meteo";
+import logo from "./logo.svg";
+import "./App.css";
+import { Route, Switch, Link } from 'react-router-dom';
+import HomePage from "./Pages/HomePage";
+import MeteoPage from "./Pages/MeteoPage";
 function App() {
+  
+  
   return (
     <div>
-      <Meteo/>
+      <HomePage />
+      <MeteoPage />
     </div>
   );
 }
